@@ -91,7 +91,7 @@ class LoginPageView extends LoginPageViewModel {
                   ),
                 ),
                 onPressed: () {
-                  Modular.to.pushNamed('/home/home-page');
+                  Modular.to.pushNamed('/home/nav-page');
                 },
                 child: const Text(
                   'Entrar',
