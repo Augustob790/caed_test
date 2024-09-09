@@ -41,14 +41,6 @@ class NavPageView extends NavPageViewModel {
   }
 }
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(child: Text("Início"));
-  }
-}
 
 class OptionsScreen extends StatelessWidget {
   const OptionsScreen({super.key});

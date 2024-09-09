@@ -2,7 +2,8 @@
 
 import 'package:caed/app/modules/home/features/domain/interfaces/i_home_usecases.dart';
 import 'package:caed/core/errors/get_exception.dart';
-import 'package:caed/core/models/dogs_model.dart';
+import 'package:caed/core/models/info_model.dart';
+import 'package:caed/core/models/packages_model.dart';
 import 'package:mobx/mobx.dart';
 import 'package:result_dart/result_dart.dart';
 
@@ -23,18 +24,39 @@ abstract class _HomeStateStoreBase with Store {
     _homeUseCases = homeUseCases;
   }
   @observable
-  List<DogsModel?> listDogs = [];
+  List<PackagesModel?> packagesList = [];
+
+  @observable
+  List<InfoModel?> infoList = [];
 
   @action
-  Future<Result<List<DogsModel>, MainException>> getAllDogs() async {
+  Future<Result<List<PackagesModel>, MainException>> getPackages() async {
     try {
-      var responseAllDogs = await _homeUseCases.getAllDogs();
-      if (responseAllDogs.isSuccess()) {
-        List<DogsModel> responseListDogs = responseAllDogs.getOrThrow();
-        listDogs = responseListDogs;
+      var responseAllPackages = await _homeUseCases.getPackages();
+      if (responseAllPackages.isSuccess()) {
+        List<PackagesModel> responseListDogs = responseAllPackages.getOrThrow();
+        packagesList = responseListDogs;
         return Success(responseListDogs);
       } else {
-        return Result.failure(responseAllDogs.exceptionOrNull()!);
+        return Result.failure(responseAllPackages.exceptionOrNull()!);
+      }
+    } catch (e) {
+      return Failure(
+        MainException(message: e.toString(), catchException: false),
+      );
+    }
+  }
+
+  @action
+  Future<Result<List<InfoModel>, MainException>> getInfo() async {
+    try {
+      var responseAllInfo = await _homeUseCases.getInfo();
+      if (responseAllInfo.isSuccess()) {
+        List<InfoModel> responseListDogs = responseAllInfo.getOrThrow();
+        infoList = responseListDogs;
+        return Success(responseListDogs);
+      } else {
+        return Result.failure(responseAllInfo.exceptionOrNull()!);
       }
     } catch (e) {
       return Failure(

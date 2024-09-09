@@ -1,7 +1,10 @@
 import 'package:caed/app/common_widgets/package_widgets.dart';
+import 'package:caed/app/modules/home/pages/package_list/widgets/data_tab.dart';
+import 'package:caed/app/modules/home/pages/package_list/widgets/package_tab.dart';
 import 'package:flutter/material.dart';
 
 import 'tab_page_view_model.dart';
+import 'widgets/status_tab.dart';
 
 class TabPageView extends TabPageViewModel {
   @override
@@ -22,7 +25,7 @@ class TabPageView extends TabPageViewModel {
         children: [
           SizedBox(
             height: 300,
-            width: 500,//screenWidthPercentage(context, 90),
+            width: 500, //screenWidthPercentage(context, 90),
             child: ListView.builder(
               itemCount: 2,
               scrollDirection: Axis.horizontal,
@@ -45,10 +48,10 @@ class TabPageView extends TabPageViewModel {
           Expanded(
             child: TabBarView(
               controller: tabController,
-              children: const [
-                Center(child: Text('Conteúdo da aba Pacotes')),
-                Center(child: Text('Conteúdo da aba Status')),
-                Center(child: Text('Conteúdo da aba Dados')),
+              children: [
+                const PackageTabWidget(),
+                TimelineWidget(events: events),
+                const DataTab(),
               ],
             ),
           ),
