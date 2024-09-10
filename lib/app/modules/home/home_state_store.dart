@@ -23,11 +23,20 @@ abstract class _HomeStateStoreBase with Store {
   }) {
     _homeUseCases = homeUseCases;
   }
+
+  @observable
+  bool isLoadingInfo = false;
+
+   @observable
+  bool isLoadingPackage = false;
+
   @observable
   List<PackagesModel?> packagesList = [];
 
   @observable
   List<InfoModel?> infoList = [];
+
+
 
   @action
   Future<Result<List<PackagesModel>, MainException>> getPackages() async {
@@ -36,6 +45,7 @@ abstract class _HomeStateStoreBase with Store {
       if (responseAllPackages.isSuccess()) {
         List<PackagesModel> responseListDogs = responseAllPackages.getOrThrow();
         packagesList = responseListDogs;
+        isLoadingPackage = true;
         return Success(responseListDogs);
       } else {
         return Result.failure(responseAllPackages.exceptionOrNull()!);
@@ -54,6 +64,7 @@ abstract class _HomeStateStoreBase with Store {
       if (responseAllInfo.isSuccess()) {
         List<InfoModel> responseListDogs = responseAllInfo.getOrThrow();
         infoList = responseListDogs;
+        isLoadingInfo = true;
         return Success(responseListDogs);
       } else {
         return Result.failure(responseAllInfo.exceptionOrNull()!);

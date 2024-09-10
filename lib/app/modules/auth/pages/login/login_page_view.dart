@@ -1,6 +1,8 @@
 import 'package:caed/app/modules/auth/pages/login/login_page_view_model.dart';
+import 'package:caed/core/helpers/colors_helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class LoginPageView extends LoginPageViewModel {
   @override
@@ -21,13 +23,13 @@ class LoginPageView extends LoginPageViewModel {
                   fit: BoxFit.contain,
                 ),
                 const SizedBox(height: 40),
-                const Padding(
-                  padding: EdgeInsets.only(bottom: 10, left: 15),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 10, left: 15),
                   child: Text(
                     'Usuário',
-                    style: TextStyle(
+                    style: GoogleFonts.sora(
                       fontSize: 15,
-                      color: Color(0xFF757575),
+                      color: const Color(0xFF757575),
                     ),
                   ),
                 ),
@@ -37,7 +39,7 @@ class LoginPageView extends LoginPageViewModel {
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       filled: true,
-                      fillColor: const Color.fromARGB(255, 238, 238, 238),
+                      fillColor: ColorHelper.hexToColor("#F0F0F0"),
                       border: OutlineInputBorder(
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(10),
@@ -46,13 +48,13 @@ class LoginPageView extends LoginPageViewModel {
                   ),
                 ),
                 const SizedBox(height: 30),
-                const Padding(
-                  padding: EdgeInsets.only(bottom: 10, left: 15),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 10, left: 15),
                   child: Text(
                     'Senha',
-                    style: TextStyle(
+                    style: GoogleFonts.sora(
                       fontSize: 15,
-                      color: Color(0xFF757575),
+                      color: const Color(0xFF757575),
                     ),
                   ),
                 ),
@@ -63,7 +65,7 @@ class LoginPageView extends LoginPageViewModel {
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(
                       filled: true,
-                      fillColor: const Color.fromARGB(255, 238, 238, 238),
+                      fillColor: ColorHelper.hexToColor("#F0F0F0"),
                       border: OutlineInputBorder(
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(10),
@@ -91,14 +93,13 @@ class LoginPageView extends LoginPageViewModel {
                   ),
                 ),
                 onPressed: () {
-                  Modular.to.pushNamed('/home/nav-page');
+                  Modular.to.pushNamed('/home/home-page');
                 },
-                child: const Text(
+                child: Text(
                   'Entrar',
-                  style: TextStyle(
+                  style: GoogleFonts.sora(
                     fontSize: 20,
                     color: Colors.black,
-                    fontWeight: FontWeight.normal,
                   ),
                 ),
               ),

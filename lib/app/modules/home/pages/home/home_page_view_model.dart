@@ -1,23 +1,22 @@
-import 'package:caed/app/modules/home/home_state_store.dart';
 import 'package:caed/app/modules/home/pages/home/home_page.dart';
-import 'package:caed/core/provider/get_it_injector.dart';
+import 'package:caed/app/modules/home/pages/home/home_page_view.dart';
+import 'package:caed/app/modules/home/pages/package_list/package_list_page.dart';
 import 'package:flutter/material.dart';
 
 abstract class HomePageViewModel extends State<HomePage> {
-  late HomeStateStore homeStateStore = getIt<HomeStateStore>();
+  PageController pageController = PageController();
+
+  int currentIndex = 0;
+  List<Widget> pages = [
+    const PackageListPage(),
+    const OptionsScreen(),
+    const TutorialsScreen(),
+  ];
+
 
   @override
-  void initState() {
-    getAllInfo();
-    getAllPackages();
-    super.initState();
-  }
-
-  getAllInfo() async {
-    await homeStateStore.getInfo();
-  }
-
-  getAllPackages() async {
-    await homeStateStore.getPackages();
+  void dispose() {
+    pageController.dispose();
+    super.dispose();
   }
 }
